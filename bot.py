@@ -1,14 +1,16 @@
 import discord
+from discord.ext import commands
+import logging 
 
-client = discord.Client()
+logger = logging.getLogger('discord')
+client = commands.Bot(command_prefix=commands.when_mentioned_or("!"), description="test", pm_help=None)
 
 @client.event
 async def on_ready():
     print("Bot Online!")
 
-@client.event
-async def on_message(message):
-    if message.content.startswith('!ping'):
-        await client.send_message(message.channel, 'pong')
+@commands.command()
+async def ping(self, ctx):
+    await ctx.send("Pong")
 
-client.run("MzYyMzYwNDk1NDI2MTA5NDQx.DKxjoA.CujltVwU0Sl1ejXaYEB2ljOlRKA")
+client.run("Don't include the token when you commit.")
