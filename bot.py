@@ -13,4 +13,11 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send("Pong!")
 
+@client.command()
+async def serverinfo(ctx):
+    em = discord.Embed(title='**Server Info**', colour=0xDEAFBF)
+    em.add_field(name="Member Count", value="number of members", inline=True)
+    em.add_field(name="Bot Count", value="number of bots", inline=True)
+    await ctx.send(embed=em)
+
 client.run("token")
