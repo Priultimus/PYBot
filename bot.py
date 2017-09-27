@@ -16,8 +16,12 @@ async def ping(ctx):
 @client.command()
 async def serverinfo(ctx):
     em = discord.Embed(title='**Server Info**', colour=0xDEAFBF)
-    em.add_field(name="Member Count", value="number of members", inline=True)
-    em.add_field(name="Bot Count", value="number of bots", inline=True)
+    em.add_field(name="Human Count", value="%s humans" %sum(not member.bot for member in ctx.guild.members), inline=True)
+    em.add_field(name="Bot Count", value="%s bots" %sum(member.bot for member in ctx.guild.members), inline=True)
     await ctx.send(embed=em)
+
+@client.command()
+async def debug(ctx):
+    print(sum(not member.bot for member in ctx.guild.members))
 
 client.run("token")
