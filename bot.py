@@ -16,6 +16,7 @@ def snowflake_time(id):
 @client.event
 async def on_ready():
     print("Bot Online!")
+    await client.change_presence(game=discord.Game(name='I Exist!'))
 
 @client.command()
 async def ping(ctx):
@@ -33,4 +34,5 @@ async def serverinfo(ctx):
 async def debug(ctx):
     print("Debug Message Goes Here")
 
-client.run("token")
+json_data = json.load(open("config.json"))
+client.run(json_data['token'])
